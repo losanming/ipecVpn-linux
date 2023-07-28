@@ -1,0 +1,71 @@
+syntax = "proto3";
+package config_proto;
+option go_package = "../service/configService";
+
+service Config{
+  rpc CreateConfig(CreateConfigRequest) returns (CreateConfigResponse); //创建配置项
+  rpc UpdateConfigById(UpdateConfigByIdRequest) returns (UpdateConfigByIdResponse); //根据id修改配置
+  rpc GetConfigList(GetConfigListRequest) returns (GetConfigListResponse); //获取配置信息列表
+  rpc DeleteConfigById(DeleteConfigByIdRequest) returns (DeleteConfigByIdResponse); //根据id删除配置
+  rpc GetInfoByKey(GetInfoByKeyRequest) returns (GetInfoByKeyResponse); //根据key获取配置
+}
+
+message CreateConfigRequest {
+  string name = 1; //名称
+  string key = 2;  //键名称
+  string value = 3; //键值
+  string value_explain = 4; //键值说明
+}
+
+message CreateConfigResponse {
+  int32 id = 1;
+  string message = 2;
+}
+
+message UpdateConfigByIdRequest {
+  int32 id = 1;
+  string name = 2;
+  string value = 3;
+  string value_explain = 4;
+}
+
+message UpdateConfigByIdResponse {
+  int32 id = 1;
+  string message = 2;
+}
+
+message GetConfigListRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+message GetConfigListResponse {
+  repeated ConfigList config_list = 1;
+  int32 total = 2;
+}
+
+message ConfigList {
+  int32 id = 1;
+  string key = 2;
+  string name = 3;
+  string value_explain = 4;
+  string created_at = 5;
+  string updated_at = 6;
+  string value = 7;
+}
+
+message DeleteConfigByIdRequest {
+  int32 id = 1;
+}
+message DeleteConfigByIdResponse {
+  int32 id = 1;
+  string message = 2;
+}
+
+
+message GetInfoByKeyRequest {
+  string key = 1;
+}
+
+message GetInfoByKeyResponse {
+    ConfigList info = 1;
+}

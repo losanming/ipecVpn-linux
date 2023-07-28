@@ -1,0 +1,14 @@
+syntax = "proto3";
+package config_proto;
+option go_package = "../service/InfoService";
+
+service Info {
+    rpc GetVersion (GetVersionRequest) returns (GetVersionResponse) {}
+}
+
+message GetVersionRequest {
+}
+
+message GetVersionResponse {
+    string version = 1;
+}

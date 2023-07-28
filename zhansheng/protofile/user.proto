@@ -1,0 +1,46 @@
+syntax = "proto3";
+package config_proto;
+option go_package = "../service/UserService";
+
+service UserService {
+  // 登录
+  rpc UserLogin(UserLoginRequest) returns (UserLoginResponse);
+  // 获取vpn节点
+  rpc GetVpnNode(GetVpnNodeRequest) returns (GetVpnNodeResponse);
+  // VPN编排链表
+  rpc VpnChainList(VpnChainListRequest) returns (VpnChainListResponse);
+}
+
+message UserLoginRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message UserLoginResponse {
+  int32 status = 1; //0成功 1失败
+  string msg = 2;
+}
+
+message GetVpnNodeRequest {
+}
+
+message GetVpnNodeResponse {
+  int32 status = 1; //0成功 1失败
+  string msg = 2;
+  repeated VpnNode vpn_nodes = 3;
+}
+ message VpnNode {
+  string uuid = 1;
+  string ip = 2;
+  string name = 3;
+ }
+
+message VpnChainListRequest {
+  repeated string vpn_chain_id_list = 1; // vpn_chain_id列表 按用户选择的顺序
+}
+
+message VpnChainListResponse {
+  int32 status = 1; //0成功 1失败
+  string msg = 2;
+  repeated string vpn_chain_list = 3;
+}
