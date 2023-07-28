@@ -21,8 +21,8 @@ type VpnChain struct {
 	ChainName  string    `json:"chainName"`
 	CreateTime time.Time `json:"createTime"`
 	UpdateTime time.Time `json:"updateTime"`
-	VpnNodes   list.List `json:"vpnNodes"`
+	VpnNodes   list.List `json:"vpnNodes"` //node uuid
 }
 
-var UserVpnChain = make(map[string]VpnChain)
-var UserVpnNode []VpnNode
+var UserVpnChain = make(map[string]VpnChain, 2) // 一共两个key user和auto
+var UserVpnNode = make(map[string]VpnNode)      // key = uuid

@@ -36,11 +36,11 @@ message GetVpnNodeResponse {
  }
 
 message VpnChainListRequest {
-  repeated string vpn_chain_id_list = 1; // vpn_chain_id列表 按用户选择的顺序
+  repeated string vpn_chain_id_list = 1; // vpn_node uuid 按用户选择的顺序
+  string chain_name = 2; //链路名称
 }
 
 message VpnChainListResponse {
   int32 status = 1; //0成功 1失败
   string msg = 2;
-  repeated string vpn_chain_list = 3;
 }
